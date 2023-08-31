@@ -42,6 +42,18 @@ persistence:
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
     hostPath: {{ $storage.hostPath | default "" }}
+    server: {{ $storage.server | default "" }}
+    share: {{ $storage.share | default "" }}
+    username: {{ $storage.username | default "" }}
+    password: {{ $storage.password | default "" }}
+    size: {{ $storage.size | default "" }}
+    {{- with $storage.mountOptions }}
+    mountOptions:
+      {{- range $opt := . }}
+      - key: {{ $opt.key | default "" }}
+        value: {{ $opt.value | default "" }}
+      {{- end }}
+    {{- end }}
     targetSelector:
       syncthing:
         syncthing:
